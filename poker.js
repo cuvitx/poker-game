@@ -35,7 +35,7 @@ function displayPokerHand(hand) {
     const [suitName, valueName] = cardName.split("-");
 
     const img = document.createElement("img");
-    img.src = `cards/${suitName}-${valueName}.svg`;
+    img.src = "./cards/" + suitName + "-" + valueName + ".svg";
     img.alt = `${valueName} of ${suitName}`;
 
     cardContainer.appendChild(img);
