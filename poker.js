@@ -25,16 +25,21 @@ function generatePokerHand() {
 }
 
 function displayPokerHand(hand) {
-  hand.forEach(card => {
-    const cardImage = document.createElement('img');
-    const cardSuit = card.charAt(1).toUpperCase();
-    const cardValue = card.charAt(0).toUpperCase();
-    const suitName = suitToString(cardSuit);
-    const valueName = valueToString(cardValue);
-    cardImage.src = `cards/${valueName}_of_${suitName}.svg`;
-    cardImage.alt = `${valueName} of ${suitName}`;
-    cardImage.classList.add('card');
-    cardDisplay.appendChild(cardImage);
+  const cardDisplay = document.querySelector("#card-display");
+  cardDisplay.innerHTML = "";
+
+  hand.forEach((cardName) => {
+    const cardContainer = document.createElement("div");
+    cardContainer.classList.add("card");
+
+    const [suitName, valueName] = cardName.split("-");
+
+    const img = document.createElement("img");
+    img.src = `cards/${suitName}-${valueName}.svg`;
+    img.alt = `${valueName} of ${suitName}`;
+
+    cardContainer.appendChild(img);
+    cardDisplay.appendChild(cardContainer);
   });
 }
 
