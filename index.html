@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Poker</title>
+    <title>Poker Game</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/gh/chenosaurus/poker-evaluator@1.0.0/dist/poker-evaluator.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Jeu de Poker</h1>
-        <div class="card-display">
-            <!-- Les cartes seront affichées ici -->
-        </div>
-        <p>Combien de mains battent cette main ?</p>
-        <input type="number" id="user-answer" placeholder="Entrez votre réponse">
-        <button id="submit-answer">Soumettre</button>
-        <p id="result"></p>
-    </div>
+    <h1>Devinez combien de mains battent celle-ci</h1>
+    <div id="card-display"></div>
+    <form id="user-input-form">
+        <label for="user-input">Votre réponse :</label>
+        <input type="number" id="user-input" min="0" max="7462" required>
+        <button type="submit">Valider</button>
+    </form>
+    <p id="result"></p>
+
     <script src="poker.js"></script>
 </body>
 </html>
