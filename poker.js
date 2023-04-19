@@ -46,13 +46,13 @@ function displayPokerHand(hand) {
 function suitToString(suit) {
   switch (suit) {
     case 'C':
-      return 'clubs';
+      return 'CLUBS';
     case 'D':
-      return 'diamonds';
+      return 'DIAMONDS';
     case 'H':
-      return 'hearts';
+      return 'HEARTS';
     case 'S':
-      return 'spades';
+      return 'SPADES';
     default:
       return '';
   }
@@ -61,13 +61,13 @@ function suitToString(suit) {
 function valueToString(value) {
   switch (value) {
     case 'A':
-      return 'ace';
+      return 'ACE';
     case 'K':
-      return 'king';
+      return 'KING';
     case 'Q':
-      return 'queen';
+      return 'QUEEN';
     case 'J':
-      return 'jack';
+      return 'JACK';
     default:
       return value;
   }
