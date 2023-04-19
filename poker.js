@@ -21,7 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function generatePokerHand() {
-  // Votre fonction pour générer une main de poker
+  const suits = ['C', 'D', 'H', 'S'];
+  const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+
+  const hand = [];
+  while (hand.length < 5) {
+    const suit = suits[Math.floor(Math.random() * suits.length)];
+    const value = values[Math.floor(Math.random() * values.length)];
+    const card = value + suit;
+    if (!hand.includes(card)) {
+      hand.push(card);
+    }
+  }
+
+  return hand;
 }
 
 function displayPokerHand(hand) {
@@ -32,11 +45,11 @@ function displayPokerHand(hand) {
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("card");
 
-    const [suitName, valueName] = cardName.split("-");
+    const [valueName, suitName] = cardName.split("");
 
     const img = document.createElement("img");
-    img.src = "./cards/" + suitName + "-" + valueName + ".svg";
-    img.alt = `${valueName} of ${suitName}`;
+    img.src = `./cards/${suitName}${valueName}.svg`;
+    img.alt = `${valueToString(valueName)} of ${suitToString(suitName)}`;
 
     cardContainer.appendChild(img);
     cardDisplay.appendChild(cardContainer);
@@ -46,13 +59,13 @@ function displayPokerHand(hand) {
 function suitToString(suit) {
   switch (suit) {
     case 'C':
-      return 'CLUBS';
+      return 'clubs';
     case 'D':
-      return 'DIAMONDS';
+      return 'diamonds';
     case 'H':
-      return 'HEARTS';
+      return 'hearts';
     case 'S':
-      return 'SPADES';
+      return 'spades';
     default:
       return '';
   }
@@ -61,18 +74,39 @@ function suitToString(suit) {
 function valueToString(value) {
   switch (value) {
     case 'A':
-      return 'ACE';
+      return 'ace';
     case 'K':
-      return 'KING';
+      return 'king';
     case 'Q':
-      return 'QUEEN';
+      return 'queen';
     case 'J':
-      return 'JACK';
+      return 'jack';
     default:
       return value;
   }
 }
 
 function calculateHandsBeaten(hand) {
-  // Votre fonction pour calculer le nombre de mains battues
+  let count = 0;
+
+  for (let i = 0; i < 1326; i++) {
+    const testHand = intToHand(i);
+    if (compareHands(hand, testHand) === -1) {
+      count++;
+    }
+  }
+
+  return count;
 }
+
+function intToHand(intHand) {
+  const hand = [];
+
+  for (let i = 0; i < 5; i++) {
+    let card = intHand % 13;
+    intHand = Math.floor(intHand / 13);
+    const suit = intHand % 4;
+    intHand = Math.floor(intHand / 4);
+
+    const suits = ['C', 'D', 'H', 'S'];
+    const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K',
